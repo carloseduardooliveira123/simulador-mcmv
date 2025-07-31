@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -378,20 +377,211 @@
                             ))
                         ]),
 
-                        // Sistema
-                        React.createElement('div', { key: 'system-field' }, [
+                        // Sistema - Com explicações completas
+                        React.createElement('div', { key: 'system-field', className: 'md:col-span-3' }, [
                             React.createElement('label', {
                                 key: 'system-label',
-                                className: "block text-sm font-medium text-gray-700 mb-1"
-                            }, 'Sistema'),
-                            React.createElement('select', {
-                                key: 'system-select',
-                                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500",
-                                value: values.system,
-                                onChange: (e) => setValues(prev => ({...prev, system: e.target.value}))
+                                className: "block text-sm font-medium text-gray-700 mb-3"
+                            }, 'Sistema de Amortização - Escolha o melhor para você'),
+                            
+                            React.createElement('div', {
+                                key: 'system-options',
+                                className: "grid md:grid-cols-2 gap-4"
                             }, [
-                                React.createElement('option', { key: 'sac', value: 'SAC' }, 'SAC (Parcelas Decrescentes)'),
-                                React.createElement('option', { key: 'price', value: 'PRICE' }, 'PRICE (Parcelas Fixas)')
+                                // SAC Option
+                                React.createElement('div', {
+                                    key: 'sac-option',
+                                    className: `p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                                        values.system === 'SAC' 
+                                            ? 'border-blue-500 bg-blue-50' 
+                                            : 'border-gray-200 hover:border-gray-300'
+                                    }`,
+                                    onClick: () => setValues(prev => ({...prev, system: 'SAC'}))
+                                }, [
+                                    React.createElement('div', {
+                                        key: 'sac-header',
+                                        className: "flex items-center mb-2"
+                                    }, [
+                                        React.createElement('input', {
+                                            key: 'sac-radio',
+                                            type: 'radio',
+                                            checked: values.system === 'SAC',
+                                            onChange: () => setValues(prev => ({...prev, system: 'SAC'})),
+                                            className: "mr-2"
+                                        }),
+                                        React.createElement('h3', {
+                                            key: 'sac-title',
+                                            className: "font-semibold text-gray-800"
+                                        }, 'SAC - Sistema de Amortização Constante')
+                                    ]),
+                                    
+                                    React.createElement('div', {
+                                        key: 'sac-content',
+                                        className: "text-sm text-gray-600 space-y-2"
+                                    }, [
+                                        React.createElement('p', {
+                                            key: 'sac-type',
+                                            className: "font-medium text-blue-700"
+                                        }, '📉 Parcelas Decrescentes'),
+                                        
+                                        React.createElement('div', {
+                                            key: 'sac-how',
+                                            className: "bg-blue-100 p-2 rounded text-xs"
+                                        }, [
+                                            React.createElement('p', { key: 'sac-how-title' }, React.createElement('strong', {}, 'Como funciona:')),
+                                            React.createElement('p', { key: 'sac-1' }, '• 1ª parcela é a mais alta'),
+                                            React.createElement('p', { key: 'sac-2' }, '• Cada mês a parcela diminui'),
+                                            React.createElement('p', { key: 'sac-3' }, '• Última parcela é a mais baixa')
+                                        ]),
+                                        
+                                        React.createElement('div', {
+                                            key: 'sac-pros',
+                                            className: "space-y-1 text-xs"
+                                        }, [
+                                            React.createElement('p', { key: 'sac-pros-title' }, React.createElement('strong', {}, '✅ Vantagens:')),
+                                            React.createElement('p', { key: 'sac-pro-1' }, '• Paga menos juros no total'),
+                                            React.createElement('p', { key: 'sac-pro-2' }, '• Parcela diminui todo mês'),
+                                            React.createElement('p', { key: 'sac-pro-3' }, '• Economia maior a longo prazo'),
+                                            
+                                            React.createElement('p', { key: 'sac-cons-title', className: 'mt-2' }, React.createElement('strong', {}, '⚠️ Atenção:')),
+                                            React.createElement('p', { key: 'sac-con-1' }, '• 1ª parcela mais alta'),
+                                            React.createElement('p', { key: 'sac-con-2' }, '• CEF analisa pela 1ª parcela')
+                                        ]),
+                                        
+                                        React.createElement('div', {
+                                            key: 'sac-ideal',
+                                            className: "mt-2 p-2 bg-green-100 rounded text-xs"
+                                        }, [
+                                            React.createElement('p', {
+                                                key: 'sac-ideal-title',
+                                                className: "font-medium text-green-800"
+                                            }, '💡 Ideal para quem:'),
+                                            React.createElement('p', { key: 'sac-ideal-1' }, '• Tem renda estável ou crescente'),
+                                            React.createElement('p', { key: 'sac-ideal-2' }, '• Quer pagar menos juros'),
+                                            React.createElement('p', { key: 'sac-ideal-3' }, '• Consegue pagar mais no início')
+                                        ])
+                                    ])
+                                ]),
+
+                                // PRICE Option
+                                React.createElement('div', {
+                                    key: 'price-option',
+                                    className: `p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                                        values.system === 'PRICE' 
+                                            ? 'border-blue-500 bg-blue-50' 
+                                            : 'border-gray-200 hover:border-gray-300'
+                                    }`,
+                                    onClick: () => setValues(prev => ({...prev, system: 'PRICE'}))
+                                }, [
+                                    React.createElement('div', {
+                                        key: 'price-header',
+                                        className: "flex items-center mb-2"
+                                    }, [
+                                        React.createElement('input', {
+                                            key: 'price-radio',
+                                            type: 'radio',
+                                            checked: values.system === 'PRICE',
+                                            onChange: () => setValues(prev => ({...prev, system: 'PRICE'})),
+                                            className: "mr-2"
+                                        }),
+                                        React.createElement('h3', {
+                                            key: 'price-title',
+                                            className: "font-semibold text-gray-800"
+                                        }, 'PRICE - Tabela Price')
+                                    ]),
+                                    
+                                    React.createElement('div', {
+                                        key: 'price-content',
+                                        className: "text-sm text-gray-600 space-y-2"
+                                    }, [
+                                        React.createElement('p', {
+                                            key: 'price-type',
+                                            className: "font-medium text-purple-700"
+                                        }, '📊 Parcelas Fixas'),
+                                        
+                                        React.createElement('div', {
+                                            key: 'price-how',
+                                            className: "bg-purple-100 p-2 rounded text-xs"
+                                        }, [
+                                            React.createElement('p', { key: 'price-how-title' }, React.createElement('strong', {}, 'Como funciona:')),
+                                            React.createElement('p', { key: 'price-1' }, '• Todas as parcelas iguais'),
+                                            React.createElement('p', { key: 'price-2' }, '• Valor nunca muda'),
+                                            React.createElement('p', { key: 'price-3' }, '• Previsibilidade total')
+                                        ]),
+                                        
+                                        React.createElement('div', {
+                                            key: 'price-pros',
+                                            className: "space-y-1 text-xs"
+                                        }, [
+                                            React.createElement('p', { key: 'price-pros-title' }, React.createElement('strong', {}, '✅ Vantagens:')),
+                                            React.createElement('p', { key: 'price-pro-1' }, '• Parcela sempre igual'),
+                                            React.createElement('p', { key: 'price-pro-2' }, '• Mais fácil de planejar'),
+                                            React.createElement('p', { key: 'price-pro-3' }, '• Não há surpresas'),
+                                            
+                                            React.createElement('p', { key: 'price-cons-title', className: 'mt-2' }, React.createElement('strong', {}, '⚠️ Atenção:')),
+                                            React.createElement('p', { key: 'price-con-1' }, '• Paga mais juros no total'),
+                                            React.createElement('p', { key: 'price-con-2' }, '• Amortização lenta no início')
+                                        ]),
+                                        
+                                        React.createElement('div', {
+                                            key: 'price-ideal',
+                                            className: "mt-2 p-2 bg-green-100 rounded text-xs"
+                                        }, [
+                                            React.createElement('p', {
+                                                key: 'price-ideal-title',
+                                                className: "font-medium text-green-800"
+                                            }, '💡 Ideal para quem:'),
+                                            React.createElement('p', { key: 'price-ideal-1' }, '• Prefere previsibilidade'),
+                                            React.createElement('p', { key: 'price-ideal-2' }, '• Tem renda fixa'),
+                                            React.createElement('p', { key: 'price-ideal-3' }, '• Quer parcelas menores no início')
+                                        ])
+                                    ])
+                                ])
+                            ]),
+                            
+                            // Comparison Summary
+                            React.createElement('div', {
+                                key: 'comparison',
+                                className: "mt-4 p-3 bg-gray-50 rounded-lg"
+                            }, [
+                                React.createElement('h4', {
+                                    key: 'comp-title',
+                                    className: "font-medium text-gray-800 mb-2 text-sm"
+                                }, '📋 Resumo Comparativo:'),
+                                React.createElement('div', {
+                                    key: 'comp-grid',
+                                    className: "grid md:grid-cols-2 gap-4 text-xs"
+                                }, [
+                                    React.createElement('div', { key: 'comp-sac' }, [
+                                        React.createElement('p', {
+                                            key: 'comp-sac-title',
+                                            className: "font-medium text-blue-700"
+                                        }, 'SAC - Melhor para economia:'),
+                                        React.createElement('p', { key: 'comp-sac-1' }, '• Paga menos juros total'),
+                                        React.createElement('p', { key: 'comp-sac-2' }, '• Parcela alta no início, baixa no fim')
+                                    ]),
+                                    React.createElement('div', { key: 'comp-price' }, [
+                                        React.createElement('p', {
+                                            key: 'comp-price-title',
+                                            className: "font-medium text-purple-700"
+                                        }, 'PRICE - Melhor para planejamento:'),
+                                        React.createElement('p', { key: 'comp-price-1' }, '• Parcela sempre igual'),
+                                        React.createElement('p', { key: 'comp-price-2' }, '• Mais fácil de organizar o orçamento')
+                                    ])
+                                ]),
+                                
+                                React.createElement('div', {
+                                    key: 'tip',
+                                    className: "mt-2 p-2 bg-yellow-100 rounded"
+                                }, [
+                                    React.createElement('p', {
+                                        key: 'tip-text',
+                                        className: "text-xs text-yellow-800"
+                                    }, [
+                                        React.createElement('strong', { key: 'tip-icon' }, '💡 Dica: '),
+                                        'A maioria dos clientes escolhe SAC para economizar nos juros, mas se você prefere parcelas fixas para facilitar o planejamento, PRICE pode ser melhor.'
+                                    ])
+                                ])
                             ])
                         ])
                     ]),
